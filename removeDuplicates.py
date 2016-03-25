@@ -1,3 +1,4 @@
+# -*-coding: utf-8-*-
 import os
 from easygui import diropenbox
 from os import path
@@ -15,15 +16,19 @@ fileparams = dict() # тут хранятся данные о файле - бу�
 files=dict()
 
 for f in listdir:
-    fullpath=dirname+"\\"+f
-    prefix = (f.split("}"))[0].split("{")[1]
-   
-    if not prefix in files:
-        files.update({"prefix":prefix,"filename":f,"filelenght":os.path.getsize(fullpath)})
-        
-        pprint.pprint(files)
+    try: 
+        fullpath=dirname+"\\"+f
+        prefix = f.split()[0]
+        if  files.get(prefix,None)==None:
+            files.update({prefix:{"filename":f,"filelenght":os.path.getsize(fullpath)}})
+      
+            continue
+    except Exception  :  
         continue
-  
+    
+
+pprint.pprint(len(files))
+pprint.pprint(files)
     
  #   os.remove(fullpath)
 pass
