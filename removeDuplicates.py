@@ -11,6 +11,7 @@ if not dirname:
 
 
 listdir = os.listdir(dirname)
+print(len(listdir))
 fileparams = dict() # тут хранятся данные о файле - будет словарь словарей
 # на один префикс хранится имя файла, его длина, тип (файл, папка)
 files=dict()
@@ -23,12 +24,12 @@ for f in listdir:
             files.update({prefix:{"filename":f,"filelenght":os.path.getsize(fullpath)}})
       
             continue
-    except Exception  :  
+    except Exception:
         continue
-    
 
+    os.remove(fullpath)
 pprint.pprint(len(files))
 pprint.pprint(files)
     
- #   os.remove(fullpath)
+
 pass
